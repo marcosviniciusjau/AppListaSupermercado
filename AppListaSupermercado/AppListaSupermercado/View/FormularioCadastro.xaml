@@ -7,8 +7,8 @@
             <ToolbarItem Text="Listagem" Clicked="ToolbarItem_Clicked" />
         </ContentPage.ToolbarItems>
 
-    <StackLayout BackgroundColor="Azure">
-        <Label Text="Formulário" FontSize="Large" FontAttributes="Bold"/>
+    <StackLayout BackgroundColor="Beige" Padding="10">
+        <Label Text="Formulário" FontSize="Large" FontAttributes="Bold" Padding="5" VerticalOptions="Center"/>
 
         <Label Text="Nome Produto" />
         <Entry x:Name="txt_descricao" Text="{ Binding Descricao }" />
@@ -23,6 +23,6 @@
         <Label Text="Preço Pago" />
         <Entry x:Name="txt_preco_pago" Text="{ Binding PrecoPago }" />
 
-        <Button Text="Salvar" Clicked="Button_Clicked"/>
+        <Button Text="Salvar" Clicked="Button_Clicked" BackgroundColor="Aquamarine"/>
     </StackLayout>
 </ContentPage>
