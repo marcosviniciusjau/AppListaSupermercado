@@ -21,7 +21,8 @@ namespace AppListaSupermercado.Helper
             return _connection.InsertAsync(p);
         }
 
-        public void getAllRows()
+
+        public Task<List<Produto>> GetAllRows()
         {
             return _connection.Table<Produto>().ToListAsync();
         }
@@ -41,7 +42,7 @@ namespace AppListaSupermercado.Helper
                 p.NomeProduto, p.Quantidade, p.PrecoEstimado, p.PrecoPago, p.Id);
         }
 
-        public Task<List<Produto> Search(string q)
+        public Task<List<Produto>> Search(string q)
         {
             string sql = "SELECT * FROM produto WHERE Descricao LIKE '%" + q + "%'";
 

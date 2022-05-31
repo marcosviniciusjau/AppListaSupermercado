@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppListaSupermercado.AbrirProduto">
+    <ContentPage.Content>
+        <StackLayout>
+
+            <Label Text="Código:" />
+            <Label x:Name="lbl_id" Text="{ Binding Id }" />
+
+            <Label Text="Nome Produto" />
+            <Entry x:Name="txt_descricao" Text="{ Binding Descricao }" />
+
+            <Label Text="Quantidade" />
+            <Entry x:Name="txt_quantidade" Text="{ Binding Quantidade }" />
+
+            <Label Text="Preço Estimado" />
+            <Entry x:Name="txt_preco_estimado" Text="{ Binding PrecoEstimado }" />
+
+            <Label Text="Preço Pago" />
+            <Entry x:Name="txt_preco_pago" Text="{ Binding PrecoPago }" />
+
+            <Button Text="Salvar" Clicked="Button_Clicked" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml
+using Xamarin.Forms.Xaml;
 
 namespace AppListaSupermercado.View
 {
@@ -20,7 +20,7 @@ namespace AppListaSupermercado.View
         }
         protected override void OnAppearing()
         {
-            ObservableCollection<Produto> tarefas = new ObservableCollection<Produto>();
+            ObservableCollection<Produto> produtos = new ObservableCollection<Produto>();
 
             System.Threading.Tasks.Task.Run(async () =>
             {
@@ -28,18 +28,18 @@ namespace AppListaSupermercado.View
 
                 foreach (Produto item in temp)
                 {
-                    tarefas.Add(item);
+                    produtos.Add(item);
                 }
 
                 atualizando.IsRefreshing = false;
             });
 
-            lista.ItemsSource = tarefas;
+            lista.ItemsSource = produtos;
         }
 
         private async void MenuItem_Clicked(object sender, EventArgs e)
         {
-            ObservableCollection<Produto> tarefas = new ObservableCollection<Produto>();
+            ObservableCollection<Produto> produtos = new ObservableCollection<Produto>();
 
             MenuItem disparador = (MenuItem)sender;
 
@@ -57,13 +57,13 @@ namespace AppListaSupermercado.View
 
                     foreach (Produto item in temp)
                     {
-                        tarefas.Add(item);
+                        produtos.Add(item);
                     }
 
                     atualizando.IsRefreshing = false;
                 });
 
-                lista.ItemsSource = tarefas;
+                lista.ItemsSource = produtos;
             }
         }
 
@@ -79,7 +79,7 @@ namespace AppListaSupermercado.View
 
         private void txt_busca_TextChanged(object sender, TextChangedEventArgs e)
         {
-            ObservableCollection<Produto> tarefas = new ObservableCollection<Produto>();
+            ObservableCollection<Produto> produtos = new ObservableCollection<Produto>();
 
             string q = e.NewTextValue;
 
@@ -89,7 +89,7 @@ namespace AppListaSupermercado.View
 
                 foreach (Produto item in temp)
                 {
-                    tarefas.Add(item);
+                    produtos.Add(item);
                 }
 
                 atualizando.IsRefreshing = false;
