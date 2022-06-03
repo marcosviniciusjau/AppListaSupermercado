@@ -2,20 +2,23 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AppListaSupermercado.View.ListaProdutos">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Somar" Clicked="ToolbarItem_Clicked_Somar" />
+        <ToolbarItem Text="Novo" Clicked="ToolbarItem_Clicked_Novo" />
+    </ContentPage.ToolbarItems>
+
     <ContentPage.Content>
         <StackLayout>
-            <StackLayout Orientation="Horizontal">
-                <SearchBar x:Name="txt_busca"
-                           Placeholder="O que vc deseja buscar?"
-                           HorizontalOptions="FillAndExpand"
-                           />
-            </StackLayout>
 
-            <RefreshView x:Name="atualizando" IsRefreshing="True">
-                <ListView x:Name="lista" >
+            <SearchBar x:Name="txt_busca" 
+                       Placeholder="Qual produto?"
+                       TextChanged="txt_busca_TextChanged" />
+
+            <RefreshView x:Name="ref_carregando" IsRefreshing="true">
+                <ListView x:Name="lst_produtos" ItemSelected="lst_produtos_ItemSelected">
                     <ListView.Header>
                         <Grid RowDefinitions="Auto"
-                              ColumnDefinitions="*,*,*">
+                              ColumnDefinitions="*, Auto, Auto">
                             <Label Grid.Row="0" Grid.Column="0" Text="Id" />
                             <Label Grid.Row="0" Grid.Column="1" Text="NomeProduto" />
                             <Label Grid.Row="0" Grid.Column="2" Text="Quantidade" />
@@ -37,13 +40,14 @@
                                     <Label Grid.Row="0" Grid.Column="2"   Text="{Binding Quantidade}" />
                                     <Label Grid.Row="1" Grid.Column="0" Text="{Binding PrecoEstimado}" />
                                     <Label Grid.Row="1" Grid.Column="1"   Text="{Binding PrecoPago}" />
-
                                 </Grid>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
             </RefreshView>
+
         </StackLayout>
     </ContentPage.Content>
+
 </ContentPage>

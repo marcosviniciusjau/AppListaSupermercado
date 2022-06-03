@@ -19,14 +19,22 @@ namespace AppListaSupermercado.View
            
         }
 
-        private void ToolbarItem_Clicked(object sender, EventArgs e)
+        private async void Button_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new ListaProdutos());
-        }
+            Produto p = new Produto
+            {
+                NomeProduto = txt_descricao.Text,
+                Quantidade = Convert.ToDouble(txt_quantidade.Text),
 
-        private void Button_Clicked(object sender, EventArgs e)
-        {
+                PrecoEstimado = Convert.ToDouble(txt_preco_estimado.Text),
+                PrecoPago = Convert.ToDouble(txt_preco_pago.Text),
+            };
 
+            await App.Database.Update(p);
+
+            await DisplayAlert("Sucesso", "Atualizado no SQLite", "OK");
+
+            await Navigation.PushAsync(new ListaProdutos());
         }
     }
 }

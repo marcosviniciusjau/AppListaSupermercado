@@ -3,99 +3,129 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+using AppListaSupermercado.View;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace AppListaSupermercado.View
+namespace AppMinhasCompras.View
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ListaProdutos : ContentPage
     {
+        
+        ObservableCollection<Produto> lista_produtos = new ObservableCollection<Produto>();
+
+
         public ListaProdutos()
         {
             InitializeComponent();
-        }
-        protected override void OnAppearing()
-        {
-            ObservableCollection<Produto> produtos = new ObservableCollection<Produto>();
 
-            System.Threading.Tasks.Task.Run(async () =>
-            {
-                List<Produto> temp = await App.Database.GetAllRows();
-
-                foreach (Produto item in temp)
-                {
-                    produtos.Add(item);
-                }
-
-                atualizando.IsRefreshing = false;
-            });
-
-            lista.ItemsSource = produtos;
+           
+            lst_produtos.ItemsSource = lista_produtos;
         }
 
-        private async void MenuItem_Clicked(object sender, EventArgs e)
+
+       
+        private void ToolbarItem_Clicked_Novo(object sender, EventArgs e)
         {
-            ObservableCollection<Produto> produtos = new ObservableCollection<Produto>();
-
-            MenuItem disparador = (MenuItem)sender;
-
-            Produto produto_selecionado = (Produto)disparador.BindingContext;
-
-            bool confirmacao = await DisplayAlert("Tem ctza?", "Remover o Produto?", "Sim", "Não");
-
-            if (confirmacao)
+            try
             {
-                await System.Threading.Tasks.Task.Run(async () =>
-                {
-                    await App.Database.Delete(produto_selecionado.Id);
+                Navigation.PushAsync(new FormularioCadastro());
 
-                    List<Produto> temp = await App.Database.GetAllRows();
-
-                    foreach (Produto item in temp)
-                    {
-                        produtos.Add(item);
-                    }
-
-                    atualizando.IsRefreshing = false;
-                });
-
-                lista.ItemsSource = produtos;
+            }
+            catch (Exception ex)
+            {
+                DisplayAlert("Ops", ex.Message, "OK");
             }
         }
 
-        private void lista_ItemSelected(object sender, SelectedItemChangedEventArgs e)
-        {
-            Produto produto_selecionado = (Produto)e.SelectedItem;
 
-            Navigation.PushAsync(new AbrirProduto
-            {
-                BindingContext = produto_selecionado
-            });
+        private void ToolbarItem_Clicked_Somar(object sender, EventArgs e)
+        {
+            double soma = lista_produtos.Sum(i => i.PrecoPago * i.Quantidade);
+
+            string msg = "O total da compra é: " + soma;
+
+            DisplayAlert("Ops", msg, "OK");
         }
 
+
+        protected override void OnAppearing()
+        {
+            
+            if (lista_produtos.Count == 0)
+            {
+               
+                System.Threading.Tasks.Task.Run(async () =>
+                {
+                   
+                    List<Produto> temp = await App.Database.GetAll();
+
+                    foreach (Produto item in temp)
+                    {
+                        lista_produtos.Add(item);
+                    }
+
+                    ref_carregando.IsRefreshing = false;
+                });
+            }
+        }
+
+
+        private async void MenuItem_Clicked(object sender, EventArgs e)
+        {
+            
+            MenuItem disparador = (MenuItem)sender;
+
+
+            
+            Produto produto_selecionado = (Produto)disparador.BindingContext;
+
+         
+            bool confirmacao = await DisplayAlert("Tem Certeza?", "Remover Item?", "Sim", "Não");
+
+            if (confirmacao)
+            {
+                
+                await App.Database.Delete(produto_selecionado.Id);
+
+           
+                lista_produtos.Remove(produto_selecionado);
+            }
+        }
+
+
+        /
         private void txt_busca_TextChanged(object sender, TextChangedEventArgs e)
         {
-            ObservableCollection<Produto> produtos = new ObservableCollection<Produto>();
+            
+            string buscou = e.NewTextValue;
 
-            string q = e.NewTextValue;
-
-            Task.Run(async () =>
+            System.Threading.Tasks.Task.Run(async () =>
             {
-                List<Produto> temp = await App.Database.Search(q);
+                List<Produto> temp = await App.Database.Search(buscou);
+
+               
+                lista_produtos.Clear();
 
                 foreach (Produto item in temp)
                 {
-                    produtos.Add(item);
+                    lista_produtos.Add(item);
                 }
 
-                atualizando.IsRefreshing = false;
+                ref_carregando.IsRefreshing = false;
             });
+        }
 
-            lista.ItemsSource = produtos;
+
+       
+        private void lst_produtos_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            
+            Navigation.PushAsync(new EditarProduto
+            {
+                BindingContext = (Produto)e.SelectedItem
+            });
         }
     }
 }
