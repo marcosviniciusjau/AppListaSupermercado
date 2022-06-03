@@ -95,7 +95,7 @@ namespace AppMinhasCompras.View
         }
 
 
-        /
+        
         private void txt_busca_TextChanged(object sender, TextChangedEventArgs e)
         {
             

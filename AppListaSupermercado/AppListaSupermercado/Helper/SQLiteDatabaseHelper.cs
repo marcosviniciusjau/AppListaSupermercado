@@ -16,6 +16,11 @@ namespace AppListaSupermercado.Helper
             _connection = new SQLiteAsyncConnection(path);
             _connection.CreateTableAsync<Produto>().Wait();
         }
+        public Task<int> Insert(Produto p)
+        {
+            return _connection.InsertAsync(p);
+        }
+
         public Task<int> save(Produto p)
         {
             return _connection.InsertAsync(p);
