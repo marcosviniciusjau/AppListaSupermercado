@@ -3,16 +3,16 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using AppListaSupermercado.View;
+
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace AppMinhasCompras.View
+namespace AppListaSupermercado.View
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ListaProdutos : ContentPage
     {
-        
+       
         ObservableCollection<Produto> lista_produtos = new ObservableCollection<Produto>();
 
 
@@ -25,12 +25,12 @@ namespace AppMinhasCompras.View
         }
 
 
-       
+      
         private void ToolbarItem_Clicked_Novo(object sender, EventArgs e)
         {
             try
             {
-                Navigation.PushAsync(new FormularioCadastro());
+                Navigation.PushAsync(new NovoProduto());
 
             }
             catch (Exception ex)
@@ -40,6 +40,7 @@ namespace AppMinhasCompras.View
         }
 
 
+        
         private void ToolbarItem_Clicked_Somar(object sender, EventArgs e)
         {
             double soma = lista_produtos.Sum(i => i.PrecoPago * i.Quantidade);
@@ -52,13 +53,13 @@ namespace AppMinhasCompras.View
 
         protected override void OnAppearing()
         {
-            
+          
             if (lista_produtos.Count == 0)
             {
                
                 System.Threading.Tasks.Task.Run(async () =>
                 {
-                   
+
                     List<Produto> temp = await App.Database.GetAll();
 
                     foreach (Produto item in temp)
@@ -72,16 +73,16 @@ namespace AppMinhasCompras.View
         }
 
 
+     
         private async void MenuItem_Clicked(object sender, EventArgs e)
         {
             
             MenuItem disparador = (MenuItem)sender;
 
 
-            
             Produto produto_selecionado = (Produto)disparador.BindingContext;
 
-         
+           
             bool confirmacao = await DisplayAlert("Tem Certeza?", "Remover Item?", "Sim", "Não");
 
             if (confirmacao)
@@ -89,13 +90,13 @@ namespace AppMinhasCompras.View
                 
                 await App.Database.Delete(produto_selecionado.Id);
 
-           
+               
                 lista_produtos.Remove(produto_selecionado);
             }
         }
 
 
-        
+       
         private void txt_busca_TextChanged(object sender, TextChangedEventArgs e)
         {
             
@@ -105,7 +106,7 @@ namespace AppMinhasCompras.View
             {
                 List<Produto> temp = await App.Database.Search(buscou);
 
-               
+                
                 lista_produtos.Clear();
 
                 foreach (Produto item in temp)
@@ -117,11 +118,9 @@ namespace AppMinhasCompras.View
             });
         }
 
-
-       
         private void lst_produtos_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            
+          
             Navigation.PushAsync(new EditarProduto
             {
                 BindingContext = (Produto)e.SelectedItem

@@ -2,29 +2,23 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AppListaSupermercado.View.EditarProduto"
-             Title="{Binding Descricao}">
-
+             Title="{Binding NomeProduto}">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Listagem" Clicked="ToolbarItem_Clicked" />
+        <ToolbarItem Text="Salvar" Clicked="ToolbarItem_Clicked" />
     </ContentPage.ToolbarItems>
 
-    <StackLayout BackgroundColor="Beige" Padding="10">
-        <Label Text="Formulário" FontSize="Large" FontAttributes="Bold" Padding="5" VerticalOptions="Center"/>
+    <ContentPage.Content>
+        <StackLayout>
 
-        <Label Text="Nome Produto" />
-        <Entry x:Name="txt_descricao" Text="{ Binding Descricao }" />
+            <Label Text="Nome Produto:" />
+            <Entry x:Name="txt_descricao" Text="{Binding NomeProduto}" />
 
-        <Label Text="Quantidade" />
-        <Entry x:Name="txt_quantidade" Text="{ Binding Quantidade }" />
+            <Label Text="Quantidade:" />
+            <Entry x:Name="txt_quantidade" Text="{Binding Quantidade}" />
 
-
-        <Label Text="Preço Estimado" />
-        <Entry x:Name="txt_preco_estimado" Text="{ Binding PrecoEstimado }" />
-
-        <Label Text="Preço Pago" />
-        <Entry x:Name="txt_preco_pago" Text="{ Binding PrecoPago }" />
-
-        <Button Text="Salvar" Clicked="Button_Clicked" BackgroundColor="Aquamarine"/>
-    </StackLayout>
+            <Label Text="Preço Pago:" />
+            <Entry x:Name="txt_preco_pago" Text="{Binding PrecoPago}" />
+        </StackLayout>
+    </ContentPage.Content>
 </ContentPage>

@@ -29,7 +29,7 @@ namespace AppListaSupermercado
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new View.FormularioCadastro());
+            MainPage = new NavigationPage(new View.ListaProdutos());
         }
 
         protected override void OnStart()

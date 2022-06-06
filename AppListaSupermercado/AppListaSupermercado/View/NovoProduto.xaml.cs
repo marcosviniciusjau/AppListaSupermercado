@@ -22,7 +22,6 @@ namespace AppListaSupermercado.View
                 {
                     NomeProduto= txt_descricao.Text,
                     Quantidade = Convert.ToDouble(txt_quantidade.Text),
-                    PrecoEstimado = Convert.ToDouble(txt_preco_estimado.Text),
                     PrecoPago = Convert.ToDouble(txt_preco_pago.Text),
                 };
 

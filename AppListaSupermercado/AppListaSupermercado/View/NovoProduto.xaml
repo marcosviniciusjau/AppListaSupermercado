@@ -1,28 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="AppListaSupermercado.View.NovoProduto">
+             x:Class="AppListaSupermercado.View.NovoProduto"
+             Title="Novo Produto">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Listagem" Clicked="ToolbarItem_Clicked" />
+        <ToolbarItem Text="Salvar" Clicked="ToolbarItem_Clicked" />
     </ContentPage.ToolbarItems>
 
-    <StackLayout BackgroundColor="Beige" Padding="10">
-        <Label Text="Formulário" FontSize="Large" FontAttributes="Bold" Padding="5" VerticalOptions="Center"/>
+    <ContentPage.Content>
 
-        <Label Text="Nome Produto" />
-        <Entry x:Name="txt_descricao" Text="{ Binding Descricao }" />
+        <StackLayout>
+            <Label Text="Nome Produto:" />
+            <Entry x:Name="txt_descricao" />
 
-        <Label Text="Quantidade" />
-        <Entry x:Name="txt_quantidade" Text="{ Binding Quantidade }" />
+            <Label Text="Quantidade:" />
+            <Entry x:Name="txt_quantidade" />
+
+            <Label Text="Preço Pago:" />
+            <Entry x:Name="txt_preco_pago" />
 
 
-        <Label Text="Preço Estimado" />
-        <Entry x:Name="txt_preco_estimado" Text="{ Binding PrecoEstimado }" />
+        </StackLayout>
 
-        <Label Text="Preço Pago" />
-        <Entry x:Name="txt_preco_pago" Text="{ Binding PrecoPago }" />
-
-        <Button Text="Salvar" Clicked="Button_Clicked" BackgroundColor="Aquamarine"/>
-    </StackLayout>
+    </ContentPage.Content>
 </ContentPage>
