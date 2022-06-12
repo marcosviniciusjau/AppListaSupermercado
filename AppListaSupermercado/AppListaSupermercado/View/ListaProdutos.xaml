@@ -9,7 +9,7 @@
 
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Lista de Produtos:" FontSize="Large"/>
+            <Label Text="Lista de Produtos:" FontSize="Large" Padding="5"/>
             <SearchBar x:Name="txt_busca" 
                        Placeholder="Qual produto?"
                        TextChanged="txt_busca_TextChanged" />
@@ -18,18 +18,18 @@
                 <ListView x:Name="lst_produtos" ItemSelected="lst_produtos_ItemSelected">
                     <ListView.Header>
                         <Grid RowDefinitions="Auto"
-                              ColumnDefinitions="*, Auto, Auto" Padding="15">
+                              ColumnDefinitions="*, Auto, Auto" Padding="5">
                             <Label Grid.Row="0" Grid.Column="0" Text="Id" />
-                            <Label Grid.Row="0" Grid.Column="1" Text="NomeProduto" />
+                            <Label Grid.Row="0" Grid.Column="1" Text="Nome" />
                             <Label Grid.Row="0" Grid.Column="2" Text="Quantidade" />
-                            <Label Grid.Row="0" Grid.Column="3" Text="PrecoPago" />
+                            <Label Grid.Row="0" Grid.Column="3" Text="Preço" />
                         </Grid>
                     </ListView.Header>
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
                                 <ViewCell.ContextActions>
-                                    <MenuItem Text="Remover"  />
+                                    <MenuItem Text="Remover" Clicked="MenuItem_Clicked" />
                                 </ViewCell.ContextActions>
 
                                 <Grid RowDefinitions="Auto" 
