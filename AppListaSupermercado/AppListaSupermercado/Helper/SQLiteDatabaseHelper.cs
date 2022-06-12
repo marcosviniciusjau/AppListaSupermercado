@@ -51,7 +51,7 @@ namespace AppListaSupermercado.Helper
 
         public Task<List<Produto>> Update(Produto p)
         {
-            string sql = "UPDATE Produto SET NomeProduto=?, Quantidade=?,  PrecoPago=?, WHERE id= ? ";
+            string sql = "UPDATE Produto SET NomeProduto=?, Quantidade=?,  PrecoPago=? WHERE Id= ? ";
             return _conn.QueryAsync<Produto>(sql, p.NomeProduto, p.Quantidade, p.PrecoPago, p.Id);
         }
         // Aqui é o Método que fará o retorno de todas as linhas contidas no arquivo db3 referentes a tabela Produto. Veja que o método executa a listagem de forma assíncrona.

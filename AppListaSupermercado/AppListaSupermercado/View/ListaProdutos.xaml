@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="AppListaSupermercado.View.ListaProdutos">
+             x:Class="AppListaSupermercado.View.ListaProdutos"
+             BackgroundColor="DarkOliveGreen">
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Somar" Clicked="ToolbarItem_Clicked_Somar" />
         <ToolbarItem Text="Novo" Clicked="ToolbarItem_Clicked_Novo" />
@@ -9,20 +10,19 @@
 
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Lista de Produtos:" FontSize="Large" Padding="5"/>
-            <SearchBar x:Name="txt_busca" 
-                       Placeholder="Qual produto?"
+            <Label Text="Lista de Produtos:" FontSize="Large" Padding="15" TextColor="White"/>
+            <SearchBar x:Name="txt_busca"  
+                       Placeholder="Qual o produto?" TextColor="White"
                        TextChanged="txt_busca_TextChanged" />
 
             <RefreshView x:Name="ref_carregando" IsRefreshing="true">
                 <ListView x:Name="lst_produtos" ItemSelected="lst_produtos_ItemSelected">
                     <ListView.Header>
                         <Grid RowDefinitions="Auto"
-                              ColumnDefinitions="*, Auto, Auto" Padding="5">
-                            <Label Grid.Row="0" Grid.Column="0" Text="Id" />
-                            <Label Grid.Row="0" Grid.Column="1" Text="Nome" />
-                            <Label Grid.Row="0" Grid.Column="2" Text="Quantidade" />
-                            <Label Grid.Row="0" Grid.Column="3" Text="Preço" />
+                              ColumnDefinitions="*, Auto, Auto">
+                            <Label Grid.Row="0" Grid.Column="0" Text="Nome" TextColor="White"/>
+                            <Label Grid.Row="0" Grid.Column="1" Text="Qnt" TextColor="White"/>
+                            <Label Grid.Row="0" Grid.Column="2" Text="Preço" TextColor="White"/>
                         </Grid>
                     </ListView.Header>
                     <ListView.ItemTemplate>
@@ -33,18 +33,17 @@
                                 </ViewCell.ContextActions>
 
                                 <Grid RowDefinitions="Auto" 
-                                      ColumnDefinitions="*,*,*">
-                                    <Label Grid.Row="1" Grid.Column="0" Text="{Binding Id}" />
-                                    <Label Grid.Row="1" Grid.Column="1" Text="{Binding NomeProduto}" />
-                                    <Label Grid.Row="1" Grid.Column="2"   Text="{Binding Quantidade}" />
-                                    <Label Grid.Row="1" Grid.Column="3"   Text="{Binding PrecoPago}" />
+                                      ColumnDefinitions="*, Auto, Auto" >
+                              
+                                    <Label Grid.Row="0" Grid.Column="0" Text="{Binding NomeProduto}" TextColor="White"/>
+                                    <Label Grid.Row="0" Grid.Column="1"   Text="{Binding Quantidade}" TextColor="White"/>
+                                    <Label Grid.Row="0" Grid.Column="2"   Text="{Binding PrecoPago}" TextColor="White"/>
                                 </Grid>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
             </RefreshView>
-
         </StackLayout>
     </ContentPage.Content>
 
