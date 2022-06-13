@@ -12,12 +12,8 @@ namespace AppListaSupermercado.View
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ListaProdutos : ContentPage
     {
-        /**
-         * A ObservableCollection é uma classe que armazena um array de objetos do tipo de Produto.
-         * Utilizamos essa classe quando estamos apresentando um array de objetos ao usuário. Diferencial
-         * dessa classe é que toda vez que um item é add, removido ou modificado no array de objetos a interface
-         * gráfica também é atualizada. Assim as modificações feitas no array sempre estão na vista do usuário.
-         */
+        // A ObservableCollection é uma classe que armazena um array de objetos do tipo de Produto.Utilizamos essa classe quando estamos apresentando um array de objetos ao usuário. Diferencial dessa classe é que toda vez que um item é add, removido ou modificado no array de objetos a interface gráfica também é atualizada. Assim as modificações feitas no array sempre estão na vista do usuário.
+   
         ObservableCollection<Produto> lista_produtos = new ObservableCollection<Produto>();
 
 
@@ -25,11 +21,8 @@ namespace AppListaSupermercado.View
         {
             InitializeComponent();
             IconImageSource = ("AppListaSupermercado.Imagens.novo.png");
-            /**
-             * Referenciando que a a fonte itens (a serem mostrados ao usuário) a ListView é a ObservableCollection 
-             * definida acima. Fazendo essa definição no construtor estamos amarrando a fonte de dados da ListView assim
-             * que ela é criada.
-             */
+            // Referenciando que a a fonte itens (a serem mostrados ao usuário) a ListView é a ObservableCollection definida acima. Fazendo essa definição no construtor estamos amarrando a fonte de dados da ListView assim que ela é criada.
+          
 
             lst_produtos.ItemsSource = lista_produtos;
         }
@@ -70,29 +63,24 @@ namespace AppListaSupermercado.View
                  
                 System.Threading.Tasks.Task.Run(async () =>
                 {
-                    /**
-                    * Retornando o array de objetos vindos do db3, foi usada uma variável tem do tipo
-                    * List para que abaixo no foreach possamos percorrer a lista temporária e add
-                    * os itens à ObservableCollection
-                    */
+                    //Retornando o array de objetos vindos do db3, foi usada uma variável tem do tipo List para que abaixo no foreach possamos percorrer a lista temporária e add os itens à ObservableCollection
+                  
                     List<Produto> temp = await App.Database.GetAll();
 
                     foreach (Produto item in temp)
                     {
                         lista_produtos.Add(item);
                     }
-                    /**
-                     * Após carregar os registros para a ObservableCollection removemos o loading da tela.
-                     */
+                    // Após carregar os registros para a ObservableCollection removemos o loading da tela.
+                     
                     ref_carregando.IsRefreshing = false;
                 });
             }
         }
 
-        /**
-        * Trata o evento Clicked do MenuItem da ViewCell.ContextActions perguntando ao usuário
-        * se ele realmente deseja remover aquele item do arquivo db3
-        */
+        
+        //Trata o evento Clicked do MenuItem da ViewCell.ContextActions perguntando ao usuário se ele realmente deseja remover o item do arquivo db3
+       
 
         private async void MenuItem_Clicked(object sender, EventArgs e)
         {
@@ -116,17 +104,19 @@ namespace AppListaSupermercado.View
         }
 
 
-       
+       //Receberá os novos valores digitados
         private void txt_busca_TextChanged(object sender, TextChangedEventArgs e)
         {
-            
+            //Obterá o valor do search
             string buscou = e.NewTextValue;
 
             System.Threading.Tasks.Task.Run(async () =>
             {
                 List<Produto> temp = await App.Database.Search(buscou);
 
-                
+                //Limpará a ObservableCollection antes de add os itens vindos da busca.
+               
+
                 lista_produtos.Clear();
 
                 foreach (Produto item in temp)
@@ -137,9 +127,10 @@ namespace AppListaSupermercado.View
                 ref_carregando.IsRefreshing = false;
             });
         }
-
+        // Tratará o evento ItemSelected da ListView navegando para a página de detalhes.
         private void lst_produtos_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
+            // Forma contraída de definir o BindingContext da página EditarProduto como sendo o Produto que foi selecionado na ListView (item da ListView) e em seguida já redicionando na navegação.
           
             Navigation.PushAsync(new EditarProduto
             {

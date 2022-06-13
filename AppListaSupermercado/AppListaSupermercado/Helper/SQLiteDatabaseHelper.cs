@@ -7,9 +7,7 @@ using SQLite;
 using System;
 
 using System.Collections.Generic;
-/**
- * Criação de Threads e Tarefas para execução assíncrona (sem congelar a tela do app) de ações.
- */
+//Criação de Threads e Tarefas para execução assíncrona (sem congelar a tela do app) de ações.
 
 using System.Threading.Tasks;
 
