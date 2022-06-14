@@ -48,9 +48,9 @@ namespace AppListaSupermercado.View
         {
             double soma = lista_produtos.Sum(i => i.PrecoPago * i.Quantidade);
 
-            string msg = "O total da compra é: " + soma;
+            string msg = "O total da compra é: R$ " + soma;
 
-            DisplayAlert("Ops", msg, "OK");
+            DisplayAlert("SOMA", msg, "OK");
         }
 
 

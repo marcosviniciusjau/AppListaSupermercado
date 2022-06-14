@@ -11,17 +11,17 @@
     <ContentPage.Content>
         <StackLayout>
             <Label Text="Lista de Produtos:" FontSize="Large" Padding="15" TextColor="White"/>
-            <SearchBar x:Name="txt_busca"  
-                       Placeholder="Qual o produto?" TextColor="White"
-                       TextChanged="txt_busca_TextChanged" />
+            <SearchBar x:Name="txt_busca"
+                       Placeholder="Qual o produto?" PlaceholderColor="White"
+                       TextChanged="txt_busca_TextChanged" TextColor="White"/>
 
             <RefreshView x:Name="ref_carregando" IsRefreshing="true">
                 <ListView x:Name="lst_produtos" ItemSelected="lst_produtos_ItemSelected">
                     <ListView.Header>
                         <Grid RowDefinitions="Auto"
-                              ColumnDefinitions="*, Auto, Auto">
-                            <Label Grid.Row="0" Grid.Column="0" Text="Nome" TextColor="White"/>
-                            <Label Grid.Row="0" Grid.Column="1" Text="Qnt" TextColor="White"/>
+                              ColumnDefinitions="*, Auto, Auto" Margin="2">
+                            <Label Grid.Row="0" Grid.Column="0" Text="Nome" TextColor="White" />
+                            <Label Grid.Row="0" Grid.Column="1" Text="Qnt" TextColor="White" />
                             <Label Grid.Row="0" Grid.Column="2" Text="Preço" TextColor="White"/>
                         </Grid>
                     </ListView.Header>
@@ -33,7 +33,7 @@
                                 </ViewCell.ContextActions>
 
                                 <Grid RowDefinitions="Auto" 
-                                      ColumnDefinitions="*, Auto, Auto" >
+                                      ColumnDefinitions="*, Auto, Auto" Margin="2" >
                               
                                     <Label Grid.Row="0" Grid.Column="0" Text="{Binding NomeProduto}" TextColor="White"/>
                                     <Label Grid.Row="0" Grid.Column="1"   Text="{Binding Quantidade}" TextColor="White"/>

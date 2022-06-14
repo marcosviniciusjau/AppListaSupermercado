@@ -12,14 +12,14 @@
     <ContentPage.Content>
 
         <StackLayout>
-            <Label Text="Nome Produto:" />
-            <Entry x:Name="txt_descricao" />
+            <Label Text="Nome Produto:" TextColor="White"/>
+            <Entry x:Name="txt_descricao" TextColor="White"/>
 
-            <Label Text="Quantidade:" />
-            <Entry x:Name="txt_quantidade" />
+            <Label Text="Quantidade:"  TextColor="White"/>
+            <Entry x:Name="txt_quantidade" TextColor="White"/>
 
-            <Label Text="Preço Pago:" />
-            <Entry x:Name="txt_preco_pago" />
+            <Label Text="Preço Pago:"  TextColor="White"/>
+            <Entry x:Name="txt_preco_pago" TextColor="White"/>
 
 
         </StackLayout>
