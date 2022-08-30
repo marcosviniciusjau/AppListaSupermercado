@@ -10,6 +10,7 @@ namespace AppListaSupermercado.Model
         public int Id { get; set; }
         public string NomeProduto { get; set; }
         public double Quantidade { get; set; }
-        public double PrecoPago { get; set; }
+        public double PrecoTotal { get; set; }
+        public double PrecoUnit { get; set; }
     }
 }

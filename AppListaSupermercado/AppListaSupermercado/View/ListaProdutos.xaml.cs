@@ -46,7 +46,7 @@ namespace AppListaSupermercado.View
         //Fará a soma de todos os produtos
         private void ToolbarItem_Clicked_Somar(object sender, EventArgs e)
         {
-            double soma = lista_produtos.Sum(i => i.PrecoPago * i.Quantidade);
+            double soma = lista_produtos.Sum(i => i.PrecoUnit * i.Quantidade);
 
             string msg = "O total da compra é: R$ " + soma;
 

@@ -23,7 +23,7 @@ namespace AppListaSupermercado.View
                 {
                     NomeProduto= txt_descricao.Text,
                     Quantidade = Convert.ToDouble(txt_quantidade.Text),
-                    PrecoPago = Convert.ToDouble(txt_preco_pago.Text),
+                    PrecoUnit = Convert.ToDouble(txt_preco_unitario.Text),
                 };
 
                 //Fará a inserção dos dados no banco de dados

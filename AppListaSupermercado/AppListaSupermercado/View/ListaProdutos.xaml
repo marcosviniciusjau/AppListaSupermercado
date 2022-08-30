@@ -22,7 +22,8 @@
                               ColumnDefinitions="*, Auto, Auto" Margin="2">
                             <Label Grid.Row="0" Grid.Column="0" Text="Nome" TextColor="White" />
                             <Label Grid.Row="0" Grid.Column="1" Text="Qnt" TextColor="White" />
-                            <Label Grid.Row="0" Grid.Column="2" Text="Preço" TextColor="White"/>
+                            <Label Grid.Row="0" Grid.Column="2" Text="Preço Unit" TextColor="White"/>
+                         
                         </Grid>
                     </ListView.Header>
                     <ListView.ItemTemplate>
@@ -37,7 +38,8 @@
                               
                                     <Label Grid.Row="0" Grid.Column="0" Text="{Binding NomeProduto}" TextColor="White"/>
                                     <Label Grid.Row="0" Grid.Column="1"   Text="{Binding Quantidade}" TextColor="White"/>
-                                    <Label Grid.Row="0" Grid.Column="2"   Text="{Binding PrecoPago}" TextColor="White"/>
+                                    <Label Grid.Row="0" Grid.Column="2"   Text="{Binding PrecoUnit}" TextColor="White"/>
+          
                                 </Grid>
                             </ViewCell>
                         </DataTemplate>

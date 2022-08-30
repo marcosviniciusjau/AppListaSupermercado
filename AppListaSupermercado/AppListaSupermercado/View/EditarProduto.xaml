@@ -16,9 +16,10 @@
 
             <Label Text="Quantidade:" TextColor="White"/>
             <Entry x:Name="txt_quantidade" Text="{Binding Quantidade}"  TextColor="White" />
+            
+            <Label Text= "Preço Unitário" TextColor="White" />
+            <Entry x:Name="txt_preco_unitario"  Text="{Binding PrecoUnit}" TextColor="White"/>
 
-            <Label Text="Preço Pago:" TextColor="White"/>
-            <Entry x:Name="txt_preco_pago" Text="{Binding PrecoPago}"  TextColor="White"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -28,7 +28,8 @@ namespace AppListaSupermercado.View
                     Id = produto_anexado.Id,
                     NomeProduto = txt_descricao.Text,
                     Quantidade = Convert.ToDouble(txt_quantidade.Text),
-                    PrecoPago = Convert.ToDouble(txt_preco_pago.Text),
+                    
+                    PrecoUnit = Convert.ToDouble(txt_preco_unitario.Text),
                 };
 
                //Aqui atualizará o banco de dados com as novas informações da model
